@@ -186,3 +186,12 @@ When adding new content, aim to keep the structure clean and consistent:
 ## Summary
 
 This repository is being built as a professional, organized, and scalable home education station. It currently includes grade-level folders for Pre-K through 2nd Grade, subject folders for Art, Math, Reading, and Science, and worksheet folders inside each subject. Over time, it will continue to grow into a richer educational resource library with added supplies, directions, and weekly planning support for a full year of guided learning.
+
+## Reference Material
+
+Worksheets in folders were retrieved from the free resource links below
+
+- [Hand 2 Mind](https://www.hand2mind.com/parents/parent-support-center/free-activities) 
+- [Kiddo Worksheets](https://www.kiddoworksheets.com/)
+- [Worksheet Fun](https://www.worksheetfun.com/)
+- [Superstar Worksheets](https://superstarworksheets.com/)
