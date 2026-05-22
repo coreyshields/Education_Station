@@ -30,7 +30,7 @@ This week starts the Pre-K routine gently. The learner practices sitting for two
 
 **Morning - 20 minutes**
 
-- 3 min: Welcome song and count claps from 0-2.
+- 3 min: Welcome song and count claps from 0-2. ex: [Hello Hello Can You Clap Your Hands?](https://www.youtube.com/watch?v=fN1Cyr0ZK9M&list=RDfN1Cyr0ZK9M&start_radio=1)
 - 5 min: Talk about morning, afternoon, and bedtime.
 - 8 min: Complete part of [Lines - 1](<../../Tracing Lines/Lines - 1.pdf>).
 - 4 min: Find A and M in the room or in a book.
