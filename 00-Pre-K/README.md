@@ -55,6 +55,15 @@ Together, these frameworks support a more complete and usable Pre-K learning exp
 
 This hybrid curriculum is designed to capture the best of both models while remaining realistic for a young child. The emphasis should stay on short lessons, repetition, conversation, movement, and play-based reinforcement.
 
+## 16-Week Weekly Planner
+
+A ready-to-use 16-week Pre-K plan is available in [16-Week Curriculum](<16-Week Curriculum/README.md>). It includes:
+
+- a weekly overview of education goals
+- five days of 20-minute morning lessons
+- five days of 20-minute evening lessons
+- direct links to usable worksheets already stored in this folder
+
 ## 1. Math
 
 Recommended lesson length: `15-20 minutes`
