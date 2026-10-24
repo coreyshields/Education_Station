@@ -8,8 +8,11 @@ The initial goal is to shape and validate one usable learning experience: a chil
 
 ## Structure
 
-- `letter-adventure/` contains the design notes and flows for the Letter Adventure concept.
+- `letter-adventure/` contains the design notes, browser prototype, and flows for the Letter Adventure concept.
 - `letter-adventure/letter-a-flow.md` sketches the first letter activity, including its screen sequence, child actions, feedback, and next attempts.
+- `letter-adventure/index.html`, `styles.css`, `game.js`, and `progress.js` make up a dependency-free local browser prototype; see its README for run instructions.
+- `letter-adventure/progress-events.md` documents the prototype's versioned, background learning-event format. Events stay local and are not shown as a score or report.
+- `TODO.md` tracks prototype polish, playtesting questions, and future learning-progress features.
 
 Design documents are the starting point for discussion and prototyping. They should capture the learning intent and observable child experience before implementation details are settled. Keep early flows small and testable; revise them based on what children and caregivers can understand and do.
 

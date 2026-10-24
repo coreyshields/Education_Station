@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#f3f8ff">
+    <meta name="description" content="A short, playful letter-finding adventure for young learners.">
+    <title>Letter Adventure: Find A</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="progress.js" defer></script>
+    <script src="game.js" defer></script>
+  </head>
+  <body>
+    <main class="game-shell">
+      <header class="topbar">
+        <a class="wordmark" href="index.html" aria-label="Letter Adventure home">Letter <span>Adventure</span></a>
+        <p class="age-note">A little letter game</p>
+      </header>
+
+      <section class="game-card" aria-labelledby="game-title">
+        <div class="game-heading">
+          <div>
+            <p class="eyebrow">YOUR FIRST QUEST</p>
+            <h1 id="game-title">The Apple Trail</h1>
+          </div>
+          <div class="progress" aria-label="Quest progress">
+            <span class="progress-dot is-current" data-step="0"></span>
+            <span class="progress-dot" data-step="1"></span>
+            <span class="progress-dot" data-step="2"></span>
+            <span class="progress-dot" data-step="3"></span>
+          </div>
+        </div>
+
+        <div id="game-root" aria-live="polite" aria-atomic="true"></div>
+        <p class="caregiver-note">Grown-up tip: You can read the prompt aloud and let your child choose.</p>
+      </section>
+
+      <footer>Take your time. Every try helps!</footer>
+    </main>
+  </body>
+</html>
