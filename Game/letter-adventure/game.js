@@ -42,7 +42,7 @@
   function renderFind() {
     const choices = letters.map((letter) => `<button class="choice" data-letter="${letter}" aria-label="Letter ${letter}">${letter}</button>`).join("");
     layout(`
-      <div class="characters"><span class="guide" role="img" aria-label="Fox guide">🦊</span></div>
+      <div class="characters"><span class="apple" role="img" aria-label="Red apple">🍎</span></div>
       <p class="prompt">Can you find the letter A?</p>
       <div class="choice-row">${choices}</div>
       <p class="feedback ${state.gentleFeedback ? "is-gentle" : ""}" role="status">${state.feedback || "Choose one letter."}</p>
