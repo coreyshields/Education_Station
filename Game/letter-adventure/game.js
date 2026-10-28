@@ -1,5 +1,6 @@
 (() => {
   const root = document.querySelector("#game-root");
+  const soundToggle = document.querySelector("[data-action='sound-toggle']");
   const progressDots = [...document.querySelectorAll(".progress-dot")];
 
   const state = {
@@ -10,7 +11,10 @@
     gentleFeedback: false,
     selected: null,
     selectionPending: false,
+    soundEnabled: false,
   };
+
+  let audioContext;
 
   const stageForScreen = { intro: 0, find: 1, trail: 2, apple: 3, done: 3 };
   const letters = ["A", "M", "S"];
@@ -107,11 +111,47 @@
     window.letterAdventureProgress?.record(eventName, details);
   }
 
+  function updateSoundToggle() {
+    soundToggle.setAttribute("aria-pressed", String(state.soundEnabled));
+    soundToggle.setAttribute("aria-label", state.soundEnabled ? "Turn sound off" : "Turn sound on");
+    soundToggle.innerHTML = `${state.soundEnabled ? "🔊" : "🔇"} <span>Sound ${state.soundEnabled ? "on" : "off"}</span>`;
+  }
+
+  function playSound(kind) {
+    if (!state.soundEnabled) return;
+    const AudioContextClass = window.AudioContext || window.webkitAudioContext;
+    if (!AudioContextClass) return;
+
+    try {
+      audioContext ||= new AudioContextClass();
+      if (audioContext.state === "suspended") audioContext.resume();
+      const notes = kind === "correct" ? [660, 880] : [520];
+      const start = audioContext.currentTime;
+      notes.forEach((frequency, index) => {
+        const oscillator = audioContext.createOscillator();
+        const volume = audioContext.createGain();
+        const noteStart = start + index * 0.11;
+        oscillator.type = kind === "correct" ? "sine" : "triangle";
+        oscillator.frequency.setValueAtTime(frequency, noteStart);
+        volume.gain.setValueAtTime(0.0001, noteStart);
+        volume.gain.exponentialRampToValueAtTime(kind === "correct" ? 0.075 : 0.045, noteStart + 0.025);
+        volume.gain.exponentialRampToValueAtTime(0.0001, noteStart + 0.16);
+        oscillator.connect(volume);
+        volume.connect(audioContext.destination);
+        oscillator.start(noteStart);
+        oscillator.stop(noteStart + 0.17);
+      });
+    } catch {
+      // Keep the game's visual feedback available if audio is unsupported or unavailable.
+    }
+  }
+
   function chooseLetter(letter) {
     if (state.selectionPending) return;
     state.selected = letter;
     if (letter === "A") {
       if (state.screen === "find") {
+        playSound("correct");
         state.selectionPending = true;
         state.attempts.find += 1;
         record("letter_choice", {
@@ -126,6 +166,7 @@
         render();
         return;
       } else if (state.screen === "apple") {
+        playSound("correct");
         state.attempts.apple += 1;
         record("letter_choice", {
           stage: "apple-start",
@@ -140,6 +181,7 @@
         state.screen = "done";
       }
     } else if (state.screen === "find") {
+      playSound("select");
       state.attempts.find += 1;
       record("letter_choice", {
         stage: "find-target",
@@ -152,6 +194,7 @@
       setFeedback(`That one is ${letter}. Let’s look for A.`, true);
       state.selected = letter;
     } else {
+      playSound("select");
       state.attempts.apple += 1;
       record("letter_choice", {
         stage: "apple-start",
@@ -193,6 +236,7 @@
       const index = Number(button.dataset.trail);
       if (state.trailFound.includes(index)) return;
       const letter = trailLetters[index];
+      playSound(letter === "A" ? "correct" : "select");
       state.attempts.trail += 1;
       record("trail_choice", {
         stage: "letter-trail",
@@ -218,5 +262,11 @@
     render();
   });
 
+  soundToggle.addEventListener("click", () => {
+    state.soundEnabled = !state.soundEnabled;
+    updateSoundToggle();
+  });
+
+  updateSoundToggle();
   render();
 })();

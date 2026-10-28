@@ -25,6 +25,9 @@ button { font: inherit; }
 .wordmark { color: #263c5a; font-size: 1.05rem; font-weight: 900; text-decoration: none; letter-spacing: -.03em; }
 .wordmark span { color: #287c68; }
 .age-note, footer { margin: 0; color: #64758a; font-size: .88rem; }
+.sound-toggle { display: inline-flex; align-items: center; justify-content: center; gap: 7px; min-height: 42px; padding: 8px 12px; border: 2px solid #cbdbe8; border-radius: 14px; background: #fff; color: #263c5a; font-size: .9rem; font-weight: 800; cursor: pointer; }
+.sound-toggle:hover, .sound-toggle:focus-visible { border-color: #55ae8d; outline: 3px solid #55ae8d55; outline-offset: 2px; }
+.sound-toggle[aria-pressed="true"] { border-color: #55ae8d; background: #e6f8ef; }
 
 .game-card {
   overflow: hidden;
@@ -69,6 +72,7 @@ h1 { margin: 0; color: #263c5a; font-size: clamp(1.45rem, 4vw, 2rem); letter-spa
 .choice.is-correct { border-color: #36a17a; background: #e6f8ef; }
 .choice.is-wrong { animation: nudge .24s ease-in-out 2; border-color: #e7a54d; background: #fff5df; }
 .choice.is-selected { position: relative; z-index: 2; animation: choose-pop .34s cubic-bezier(.2,.8,.2,1) both; }
+.choice.is-selected.is-wrong { animation: gentle-shake .36s ease-in-out both; }
 .choice:disabled { cursor: default; }
 .choice-letter { position: relative; z-index: 1; }
 .celebration { position: absolute; inset: 0; pointer-events: none; }
@@ -96,11 +100,13 @@ footer { padding: 16px 0 0; text-align: center; }
 .small-note { margin: 14px 0 0; color: #64758a; font-size: .85rem; }
 
 @keyframes nudge { 25% { transform: translateX(-5px); } 75% { transform: translateX(5px); } }
+@keyframes gentle-shake { 0%, 100% { transform: translateX(0); } 25% { transform: translateX(-4px); } 50% { transform: translateX(4px); } 75% { transform: translateX(-2px); } }
 @keyframes choose-pop { 50% { transform: translateY(-8px) scale(1.14); box-shadow: 0 10px 0 #b8daca, 0 0 0 7px #36a17a33; } }
 @keyframes burst { 0% { opacity: 0; transform: translate(-50%, -50%) scale(.45); } 20% { opacity: 1; } 100% { opacity: 0; transform: translate(calc(-50% + var(--burst-x)), calc(-50% + var(--burst-y))) scale(1.15) rotate(22deg); } }
 @keyframes continue-arrive { from { opacity: 0; transform: translateY(7px); } to { opacity: 1; transform: translateY(0); } }
 @media (max-width: 560px) {
   .game-shell { width: min(100% - 20px, 900px); padding-top: 12px; }
+  .age-note { display: none; }
   .game-heading { padding: 20px 18px 14px; }
   .scene { min-height: 390px; padding: 22px 14px; }
   .choice-row { gap: 10px; }
