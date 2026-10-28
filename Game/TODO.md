@@ -9,9 +9,9 @@ This backlog tracks improvements to the first Letter Adventure prototype. Priori
 - [x] **Make scene art responsive.** Scale and reposition the apple, letter choices, trail, and character to fit the available screen while keeping choices large and comfortably spaced.
 - [x] **Add visual feedback to choices.** Animate a selected letter so it is clear which item was tapped. For a correct A, briefly celebrate with a small burst of apple, alligator, or ant shapes; keep the effect short and avoid obscuring the next action.
 - [x] **Add optional sound feedback.** Provide a soft, distinct sound for a selection and a positive sound for a correct answer. Include a visible mute/sound control, avoid autoplay, and make sure the game remains understandable with sound off.
-- [ ] **Vary letter choices between plays.** Shuffle the positions of answer choices and vary distractor letters on replay, while ensuring there is one unambiguous correct answer and the target A stays easy to find.
-- [ ] **Make progress and feedback states clear.** Show how many trail letters remain and ensure each selected marker visibly stays collected. Keep incorrect-answer feedback encouraging and specific.
-- [ ] **Check accessibility and comfort.** Confirm strong text/background contrast, visible keyboard focus, usable keyboard activation, reduced-motion support, and no reliance on color or sound alone to communicate correctness.
+- [x] **Vary letter choices between plays.** Shuffle the positions of answer choices and vary distractor letters on replay, while ensuring there is one unambiguous correct answer and the target A stays easy to find.
+- [x] **Make progress and feedback states clear.** Show how many trail letters remain and ensure each selected marker visibly stays collected. Keep incorrect-answer feedback encouraging and specific.
+- [x] **Check accessibility and comfort.** Confirm strong text/background contrast, visible keyboard focus, usable keyboard activation, reduced-motion support, and no reliance on color or sound alone to communicate correctness.
 
 ## Playtest and learning design
 
