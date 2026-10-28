@@ -114,10 +114,10 @@
 
   function renderIntro() {
     layout(`
-      <div class="characters"><span class="guide" role="img" aria-label="A friendly fox guide">🦊</span><span class="apple" role="img" aria-label="Red apple">🍎</span></div>
+      <div class="characters"><span class="guide" role="img" aria-label="Ant guide">🐜</span><span class="apple" role="img" aria-label="Red apple">🍎</span><span class="guide" role="img" aria-label="Alligator guide">🐊</span></div>
       <div class="letter-pair" aria-label="Uppercase A and lowercase a"><span>A</span><span>a</span></div>
       <p class="prompt">Let’s find the letter A. A says /a/, like apple.</p>
-      <p class="subprompt">Your fox friend needs help following the apple trail.</p>
+      <p class="subprompt">Help your ant and alligator friends follow the apple trail.</p>
       <button class="primary-button" data-action="start">Let’s go!</button>
     `);
   }
