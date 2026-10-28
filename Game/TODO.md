@@ -4,7 +4,7 @@ This backlog tracks improvements to the first Letter Adventure prototype. Priori
 
 ## First polish pass
 
-- [ ] **Clarify the first screen after “Let’s go.”** Replace the fox emoji with a clear, original apple or alligator illustration. Keep the character's identity obvious at a glance and consistent across screens.
+- [x] **Clarify the first screen after “Let’s go.”** Replace the fox emoji with a clear, original apple or alligator illustration. Keep the character's identity obvious at a glance and consistent across screens.
 - [ ] **Make text and controls easier to see and use.** Increase child-facing text and button sizes, then check that they scale appropriately on desktop, tablet, and narrow screens without crowding or clipping.
 - [ ] **Make scene art responsive.** Scale and reposition the apple, letter choices, trail, and character to fit the available screen while keeping choices large and comfortably spaced.
 - [ ] **Add visual feedback to choices.** Animate a selected letter so it is clear which item was tapped. For a correct A, briefly celebrate with a small burst of apple, alligator, or ant shapes; keep the effect short and avoid obscuring the next action.
