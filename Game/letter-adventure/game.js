@@ -9,6 +9,7 @@
     feedback: "",
     gentleFeedback: false,
     selected: null,
+    selectionPending: false,
   };
 
   const stageForScreen = { intro: 0, find: 1, trail: 2, apple: 3, done: 3 };
@@ -40,12 +41,18 @@
   }
 
   function renderFind() {
-    const choices = letters.map((letter) => `<button class="choice" data-letter="${letter}" aria-label="Letter ${letter}">${letter}</button>`).join("");
+    const choices = letters.map((letter) => {
+      const selected = state.selected === letter;
+      const correct = selected && letter === "A";
+      const particles = correct ? `<span class="celebration" aria-hidden="true"><span>🍎</span><span>🐜</span><span>🐊</span><span>🍎</span></span>` : "";
+      return `<button class="choice ${selected ? `is-selected ${correct ? "is-correct" : "is-wrong"}` : ""}" data-letter="${letter}" aria-label="Letter ${letter}" ${state.selectionPending ? "disabled" : ""}><span class="choice-letter">${letter}</span>${particles}</button>`;
+    }).join("");
     layout(`
       <div class="characters"><span class="apple" role="img" aria-label="Red apple">🍎</span></div>
-      <p class="prompt">Can you find the letter A?</p>
+      <p class="prompt">${state.selectionPending ? "You found the letter A! Great job!" : "Can you find the letter A?"}</p>
       <div class="choice-row">${choices}</div>
       <p class="feedback ${state.gentleFeedback ? "is-gentle" : ""}" role="status">${state.feedback || "Choose one letter."}</p>
+      ${state.selectionPending ? `<button class="primary-button continue-button" data-action="continue">Continue</button>` : ""}
     `);
   }
 
@@ -101,8 +108,11 @@
   }
 
   function chooseLetter(letter) {
+    if (state.selectionPending) return;
+    state.selected = letter;
     if (letter === "A") {
       if (state.screen === "find") {
+        state.selectionPending = true;
         state.attempts.find += 1;
         record("letter_choice", {
           stage: "find-target",
@@ -112,8 +122,9 @@
           correct: true,
           attempt_number: state.attempts.find,
         });
-        setFeedback("You found A! Let’s follow the trail.");
-        state.screen = "trail";
+        setFeedback("You found A!");
+        render();
+        return;
       } else if (state.screen === "apple") {
         state.attempts.apple += 1;
         record("letter_choice", {
@@ -139,6 +150,7 @@
         attempt_number: state.attempts.find,
       });
       setFeedback(`That one is ${letter}. Let’s look for A.`, true);
+      state.selected = letter;
     } else {
       state.attempts.apple += 1;
       record("letter_choice", {
@@ -163,12 +175,18 @@
       state.attempts = { find: 0, trail: 0, apple: 0 };
       window.letterAdventureProgress?.startSession();
       setFeedback("");
+    } else if (button.dataset.action === "continue") {
+      state.screen = "trail";
+      state.selectionPending = false;
+      state.selected = null;
+      setFeedback("Let’s follow the apple trail!");
     } else if (button.dataset.action === "again") {
       state.screen = "intro";
       state.trailFound = [];
       state.attempts = { find: 0, trail: 0, apple: 0 };
       setFeedback("");
     } else if (button.dataset.letter) {
+      if (state.selectionPending) return;
       chooseLetter(button.dataset.letter);
       return;
     } else if (button.dataset.trail !== undefined) {
